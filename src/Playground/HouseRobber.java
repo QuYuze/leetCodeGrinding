@@ -14,8 +14,10 @@ public class HouseRobber {
             HouseRobber robber = new HouseRobber();
             HouseRobber.Solution1 sol1 = robber.new Solution1();
             HouseRobber.Solution2 sol2 = robber.new Solution2();
+            HouseRobber.Solution3 sol3 = robber.new Solution3();
             System.out.println(sol1.rob(nums));
             System.out.println(sol2.rob(nums));
+            System.out.println(sol3.rob(nums));
 
         }
 
@@ -98,5 +100,26 @@ public class HouseRobber {
             return result;
         }
 
+    }
+
+    //ieterative+memo approach, bottom up
+    public class Solution3{
+
+
+            public int rob(int[] nums){
+
+                if (nums.length==0) return 0;
+
+                int[] memo = new int[nums.length+1];
+                memo[0] = 0;
+                memo[1] = nums[0];
+                for(int i=1; i< nums.length; i++){
+                    memo[i+1] = Math.max(memo[i], memo[i-1] + nums[i]);
+                }
+
+                return memo[nums.length];
+
+
+            }
     }
 }
