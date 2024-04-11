@@ -9,9 +9,7 @@ public class TargetSum {
 
         public int findTargetSumWays(int[] nums, int target) {
             int[] result = {0};
-
             find(nums, target, 0, 0, result);
-
             return result[0];
         }
 
@@ -22,11 +20,8 @@ public class TargetSum {
                 }
             }else{
                 int temp = nums[start];
-                sum += temp;
-                find(nums, target, start+1, sum, result);
-                sum -= temp;
-                sum += (-1)*temp;
-                find(nums, target, start+1, sum, result);
+                find(nums, target, start+1, sum+temp, result);
+                find(nums, target, start+1, sum-temp, result);
             }
         }
     }
