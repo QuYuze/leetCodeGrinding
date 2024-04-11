@@ -5,23 +5,24 @@ public class TargetSum {
 
     class Solution {
 
-        //static int result = 0;
-
         public int findTargetSumWays(int[] nums, int target) {
-            int[] result = {0};
-            find(nums, target, 0, 0, result);
-            return result[0];
+            int result = 0;
+            result = find(nums, target, 0, 0);
+            return result;
         }
 
-        public void find(int[] nums, int target, int start, int sum, int[] result){
+        public int find(int[] nums, int target, int start, int sum){
             if(start >= nums.length){
                 if(sum == target){
-                    result[0]++;
+                    return 1;
+                }else{
+                    return 0;
                 }
             }else{
                 int temp = nums[start];
-                find(nums, target, start+1, sum+temp, result);
-                find(nums, target, start+1, sum-temp, result);
+                int left = find(nums, target, start+1, sum+temp);
+                int right = find(nums, target, start+1, sum-temp);
+                return left+right;
             }
         }
     }
