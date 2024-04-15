@@ -1,7 +1,7 @@
 package Playground;
 
 //https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
-public class LowestCommanAncestor {
+public class LowestCommanAncestorOfBinaryTree {
 
 
     /**
