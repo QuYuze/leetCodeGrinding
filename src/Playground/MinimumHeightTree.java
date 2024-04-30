@@ -2,6 +2,8 @@ package Playground;
 
 import java.util.*;
 
+//https://leetcode.com/problems/minimum-height-trees/solutions/5060930/full-explanation-bfs-remove-leaf-nodes/
+
 public class MinimumHeightTree {
 
     class Solution {
