@@ -6,17 +6,21 @@ public class Playground {
 
     public static void main(String[] args){
 
-        ArrayList<ArrayList<Integer>> test = new ArrayList<>();
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(1);
+        int hare = 5;
+        int tortoise = 11;
+        int j = 0;
 
-        ArrayList<Integer> temp2 = new ArrayList<>();
-        temp2.add(1);
+        for(j=0;j<20;j++)
+        {
+            if(hare < tortoise)
+                hare *= 2;
+            else if(hare == tortoise)
+                break;
+            else
+                tortoise += 1;
+        }
+        //return
 
-        test.add(temp);
-
-        System.out.println(test.contains(temp2));
-        System.out.println(temp);
-        System.out.println(temp2);
+        System.out.println(hare);
     }
 }
