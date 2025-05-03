@@ -2,6 +2,7 @@ package Playground;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 //https://leetcode.com/problems/insert-delete-getrandom-o1/
 public class InsertDeleteGetRandomO1 {
