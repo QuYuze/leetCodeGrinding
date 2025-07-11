@@ -41,4 +41,54 @@ public class SetMatrixZeroes {
             }
         }
     }
+
+
+    //use constant space
+    class Solution2 {
+        public void setZeroes(int[][] matrix) {
+
+            if(matrix.length == matrix[0].length && matrix.length == 1){
+                return;
+            }
+
+            boolean firstRow = false;
+            boolean firstCol = false;
+
+            for(int i=0; i<matrix.length; i++){
+                for(int j=0; j<matrix[0].length; j++){
+                    if(matrix[i][j] == 0){
+                        matrix[i][0] = 0;
+                        matrix[0][j] = 0;
+                        if(i == 0){
+                            firstRow = true;
+                        }
+
+                        if(j == 0){
+                            firstCol = true;
+                        }
+                    }
+                }
+            }
+
+            for(int i=matrix.length-1; i>=1; i--){
+                for(int j=matrix[0].length-1; j>=1; j--){
+                    if(matrix[i][0] == 0 || matrix[0][j] == 0){
+                        matrix[i][j] = 0;
+                    }
+                }
+            }
+
+            if(firstRow){
+                Arrays.fill(matrix[0], 0);
+            }
+
+            if(firstCol){
+                for(int i=0; i<matrix.length; i++){
+                    matrix[i][0] = 0;
+                }
+            }
+
+
+        }
+    }
 }

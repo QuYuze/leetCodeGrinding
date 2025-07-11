@@ -1,6 +1,6 @@
 package Playground;
 
-import java.util.HashMap;
+import java.util.*;
 
 //https://leetcode.com/problems/clone-graph/
 public class CloneGraph {
@@ -55,6 +55,60 @@ class Node {
             }else{
                 return map.get(node);
             }
+
+        }
+    }
+
+    //without recurion approach
+    class Solution2 {
+        public Node cloneGraph(Node node) {
+
+            if(node == null){
+                return null;
+            }
+
+            Node result = null;
+            Queue<Node> q = new LinkedList<>();
+            HashMap<Node, Node> map = new HashMap<>();
+            HashSet<Node> set = new HashSet<>();
+
+            q.add(node);
+            set.add(node);
+
+            while(!q.isEmpty()){
+
+                int size = q.size();
+
+                while(size > 0){
+
+                    Node n = q.remove();
+                    Node clone = new Node(n.val);
+
+                    for(Node neighbor : n.neighbors){
+
+                        if(map.containsKey(neighbor)){
+                            clone.neighbors.add(map.get(neighbor));
+                            map.get(neighbor).neighbors.add(clone);
+                        }else{
+                            if(!set.contains(neighbor)){
+                                q.add(neighbor);
+                                set.add(neighbor);
+                            }
+
+                        }
+                    }
+
+                    map.put(n, clone);
+
+                    size--;
+                }
+
+                result = map.get(node);
+            }
+
+            return result;
+
+
 
         }
     }

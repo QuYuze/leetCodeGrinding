@@ -37,4 +37,36 @@ public class rotateImage {
 
         }
     }
+
+    class Solution2 {
+        public void rotate(int[][] matrix) {
+
+            int left = 0;
+            int right = matrix[0].length-1;;
+            int top = 0;
+            int bottom = matrix.length-1;
+
+            while(left<right && top<bottom){
+
+
+                for(int i=0; i<(right - left); i++){
+                    int temp = matrix[top+i][right];
+                    matrix[top+i][right] = matrix[top][i+left];
+
+                    int temp1 = matrix[bottom][right-i];
+                    matrix[bottom][right-i] = temp;
+
+                    matrix[top][i+left] = matrix[bottom-i][left];
+                    matrix[bottom-i][left] = temp1;
+                    //System.out.println(temp+" "+temp1);
+
+                }
+
+                left++;
+                right--;
+                top++;
+                bottom--;
+            }
+        }
+    }
 }
