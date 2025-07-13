@@ -61,12 +61,12 @@ public class LongestIncreasingSubsequence {
             int left = 0;
             int right = result.size()-1;
 
-            while(left <= right){
+            while(left < right){
                 int mid = left + (right - left) / 2;
                 if(result.get(mid) == curr){
                     return mid;
                 }else if(result.get(mid) > curr){
-                    right = mid - 1;
+                    right = mid;
                 }else{
                     left = mid + 1;
                 }
