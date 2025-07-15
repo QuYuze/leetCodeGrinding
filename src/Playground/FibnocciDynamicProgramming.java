@@ -1,5 +1,6 @@
 package Playground;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FibnocciDynamicProgramming {
@@ -39,6 +40,29 @@ public class FibnocciDynamicProgramming {
                 map.put(n, result);
                 return result;
 
+        }
+    }
+
+    class Solution {
+        public int fib(int n) {
+            if(n == 0){
+                return 0;
+            }else if(n == 1){
+                return 1;
+            }
+
+            ArrayList<Integer> list = new ArrayList<>();
+            int i = 2;
+            list.add(0);
+            list.add(1);
+
+            while(i <= n){
+                int size = list.size();
+                list.add(list.get(size-1)+list.get(size-2));
+                i++;
+            }
+
+            return list.get(list.size()-1);
         }
     }
 }
