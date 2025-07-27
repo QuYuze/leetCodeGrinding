@@ -3,36 +3,59 @@ package Playground;
 //https://leetcode.com/problems/search-in-rotated-sorted-array/
 public class SearchInRotatedSortedArray {
 
+
+    /*
+        check if target is in the sorted half
+        - if left < mid -> sorted half is left to mid
+        - otherwise, sorted half is mid to right
+
+        check if target is in the sorted half or not and move the pointer with respect to the position;
+
+        - if target within left - mid sorted half, then move right to mid, otherwise move left;
+        - if target within mid - right sorted half, then move left to mid, otherwise move right;
+
+     */
     class Solution {
         public int search(int[] nums, int target) {
-            int result = -1;
-            int low = 0;
-            int high = nums.length-1;
-
-            while(low <= high){
-                int mid = low + (high - low)/2;
-
-                if(nums[mid]==target){
-                    result = mid;
-                    break;
+            if(nums.length == 1){
+                if(nums[0] == target){
+                    return 0;
                 }else{
-                    if(nums[low]<=nums[mid]){
-                        if(target<nums[mid] && nums[low]<=target){
-                            high = mid-1;
+                    return -1;
+                }
+            }
+            int result = -1;
+
+            int left = 0;
+            int right = nums.length -1;
+
+            while(left <= right){
+                int mid = left + (right - left)/2;
+
+                if(nums[mid] == target){
+                    return mid;
+                }else{
+                    if(nums[mid] >= nums[left]){
+                        if(target < nums[mid] && target >= nums[left]){
+                            right = mid - 1;
                         }else{
-                            low = mid+1;
+                            left = mid + 1;
                         }
                     }else{
-                        if(target>nums[mid] && nums[high]>=target){
-                            low = mid+1;
+                        if(target >= nums[mid] && nums[right] >= target){
+                            left = mid + 1;
                         }else{
-                            high = mid-1;
+                            right = mid - 1;
                         }
                     }
                 }
             }
 
-            return result;
+            if(nums[left] != target){
+                return -1;
+            }else{
+                return left;
+            }
         }
     }
 }
